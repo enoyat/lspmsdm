@@ -60,12 +60,12 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="https://bnsp.go.id/lsp/lsp-msdm-unggul-indonesia"
-                            target="_blank">Sertifikasi Jarah
+                        <a class="nav-link" href="https://msdmui.nasonline.id/login" target="_blank">Sertifikasi Jarah
                             Jauh</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Informasi</a>
+                        <a class="nav-link" href="https://bnsp.go.id/lsp/lsp-msdm-unggul-indonesia"
+                            target="_blank">Informasi LSP</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Gallery</a>
