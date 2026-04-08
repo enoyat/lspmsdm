@@ -1,29 +1,30 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/listgallery', [App\Http\Controllers\HomeController::class, 'listgallery'])->name('listgallery');
+Route::get('/tentang-lsp', function () {
+    return view('tentanglsp');
 });
-Route::get('/skema-sertifikasi', function () {
-    return view('skema');
+Route::get('/legalitas', function () {
+    return view('legalitas');
 });
-Route::get('/skema-sertifikasi/{id}', function ($id) {
 
-    // dummy data (nanti bisa dari database)
-    $data = [
-        'id'        => $id,
-        'judul'     => 'Supervisor SDM',
-        'kode'      => 'MSDM-002',
-        'level'     => 'Level 4',
-        'deskripsi' => 'Skema sertifikasi ini ditujukan untuk tenaga kerja di bidang Human Resource Supervisor yang bertanggung jawab dalam pengelolaan SDM.',
-        'unit'      => [
-            'Menyusun kebutuhan tenaga kerja',
-            'Melaksanakan rekrutmen dan seleksi',
-            'Mengelola kinerja karyawan',
-            'Mengembangkan kompetensi SDM',
-        ],
-    ];
+Route::get('/skema-sertifikasi', [App\Http\Controllers\HomeController::class, 'skemasertifikasi'])->name('skema.index');
+Route::get('/skema-sertifikasi/{id}', [App\Http\Controllers\HomeController::class, 'skemadetail'])->name('skema.detail');
 
-    return view('skema-detail', compact('data'));
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('gallery', \App\Http\Controllers\Admin\GalleryController::class);
 });
+
+require __DIR__ . '/auth.php';

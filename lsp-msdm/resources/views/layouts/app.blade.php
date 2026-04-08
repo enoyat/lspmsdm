@@ -9,11 +9,12 @@
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap"
         rel="stylesheet">
-
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -49,14 +50,12 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-elegant">
-                            <li><a class="dropdown-item" href="#">Tentang LSP</a></li>
-                            <li><a class="dropdown-item" href="#">Visi & Misi</a></li>
-                            <li><a class="dropdown-item" href="#">Struktur Organisasi</a></li>
-                            <li><a class="dropdown-item" href="#">Legalitas</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/tentang-lsp') }}">Tentang LSP</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/legalitas') }}">Legalitas</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/skema-sertifikasi') }}">SKema Sertifikasi</a>
+                        <a class="nav-link" href="{{ url('/skema-sertifikasi') }}">Skema Sertifikasi</a>
                     </li>
 
                     <li class="nav-item">
@@ -68,12 +67,31 @@
                             target="_blank">Informasi LSP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Gallery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Kontak</a>
+                        <a class="nav-link" href="{{ route('listgallery') }}">Gallery</a>
                     </li>
 
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li>
+                    @endguest
+
+                    @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                {{ auth()->user()->name }}
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-elegant">
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button class="dropdown-item">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endauth
                 </ul>
             </div>
 
@@ -89,7 +107,7 @@
 
                 <div class="col-md-12 text-center text-md-start text-white">
 
-                    <div class="banner-tag mb-2">
+                    {{-- <div class="banner-tag mb-2">
                         #SERTIFIKATKOMPETENSI SDM
                     </div>
 
@@ -103,7 +121,7 @@
                         No. Lisensi : BNSP-LSP-2177-ID <br>
                         SK : KEP.1655/BNSP/VII/2022 <br>
                         Update : KEP.772/BNSP/III/2024
-                    </div>
+                    </div> --}}
 
                 </div>
 

@@ -27,45 +27,83 @@
         </div>
 
         <!-- PENDAFTARAN -->
-        <h5 class="section-title text-center mb-3">
-            TAHAP PENDAFTARAN UJI KOMPETENSI
-        </h5>
+        <div class="container py-5">
 
-        <div class="row g-4 text-center mb-4">
-            <div class="col-md-6">
-                <p class="fw-bold">OFFLINE</p>
-                <div class="card-box">
-                    <img src="{{ asset('assets/images/feature.jpg') }}" class="img-fluid" alt="pendaftaran offline">
+            <h5 class="text-center fw-bold mb-4 section-title">
+                TAHAP PENDAFTARAN UJI KOMPETENSI
+            </h5>
+
+            <div class="row g-4">
+
+                <!-- OFFLINE -->
+                <div class="col-md-6">
+                    <div class="alur-card h-100 text-center">
+
+                        <div class="alur-label">OFFLINE</div>
+
+                        <div class="alur-image">
+                            <img src="{{ asset('assets/images/alur-daftar-offline.jpeg') }}" alt="pendaftaran offline">
+                        </div>
+
+                    </div>
                 </div>
+
+                <!-- ONLINE -->
+                <div class="col-md-6">
+                    <div class="alur-card h-100 text-center">
+
+                        <div class="alur-label">ONLINE</div>
+
+                        <div class="alur-image">
+                            <img src="{{ asset('assets/images/alur-daftar-online.jpeg') }}" alt="pendaftaran online">
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
-            <div class="col-md-6">
-                <p class="fw-bold">ONLINE</p>
-                <div class="card-box">
-                    <img src="{{ asset('assets/images/feature.jpg') }}" class="img-fluid" alt="pendaftaran online">
-                </div>
-            </div>
         </div>
 
+
         <!-- PELAKSANAAN -->
-        <h5 class="section-title text-center mb-3">
-            TAHAP PELAKSANAAN UJI KOMPETENSI
-        </h5>
 
-        <div class="row g-4 text-center">
-            <div class="col-md-6">
-                <p class="fw-bold">OFFLINE</p>
-                <div class="card-box">
-                    <img src="{{ asset('assets/images/feature.jpg') }}" class="img-fluid" alt="pelaksanaan offline">
+        <div class="container py-5">
+
+            <h5 class="text-center fw-bold mb-4 section-title">
+                TAHAP PELAKSANAAN UJI KOMPETENSI
+            </h5>
+
+            <div class="row g-4">
+
+                <!-- OFFLINE -->
+                <div class="col-md-6">
+                    <div class="alur-card h-100 text-center">
+
+                        <div class="alur-label">OFFLINE</div>
+
+                        <div class="alur-image">
+                            <img src="{{ asset('assets/images/alur-sertifikasi-offline.jpeg') }}" alt="pelaksanaan offline">
+                        </div>
+
+                    </div>
                 </div>
+
+                <!-- ONLINE -->
+                <div class="col-md-6">
+                    <div class="alur-card h-100 text-center">
+
+                        <div class="alur-label">ONLINE</div>
+
+                        <div class="alur-image">
+                            <img src="{{ asset('assets/images/alur-sertifikasi-online.jpeg') }}" alt="pelaksanaan online">
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
-            <div class="col-md-6">
-                <p class="fw-bold">ONLINE</p>
-                <div class="card-box">
-                    <img src="{{ asset('assets/images/feature.jpg') }}" class="img-fluid" alt="pelaksanaan online">
-                </div>
-            </div>
         </div>
 
     </div>
@@ -75,26 +113,21 @@
 
             <!-- INDICATOR -->
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselLSP" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#carouselLSP" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#carouselLSP" data-bs-slide-to="2"></button>
+                @foreach ($carousel as $key => $slider)
+                    <button type="button" data-bs-target="#carouselLSP" data-bs-slide-to="{{ $key }}"
+                        class="{{ $key == 0 ? 'active' : '' }}">
+                    </button>
+                @endforeach
             </div>
 
             <!-- SLIDES -->
             <div class="carousel-inner rounded shadow">
-
-                <div class="carousel-item active">
-                    <img src="{{ asset('assets/images/slide1.jpg') }}" class="d-block w-100 carousel-img" alt="slide1">
-                </div>
-
-                <div class="carousel-item">
-                    <img src="{{ asset('assets/images/slide2.jpg') }}" class="d-block w-100 carousel-img" alt="slide2">
-                </div>
-
-                <div class="carousel-item">
-                    <img src="{{ asset('assets/images/slide3.jpg') }}" class="d-block w-100 carousel-img" alt="slide3">
-                </div>
-
+                @foreach ($carousel as $key => $slider)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                        <img src="{{ asset('storage/gallery/' . $slider->gambar) }}" class="d-block w-100 carousel-img"
+                            alt="slide{{ $key }}">
+                    </div>
+                @endforeach
             </div>
 
             <!-- CONTROL -->
@@ -115,26 +148,40 @@
             <div class="thumb-track">
 
                 <!-- ITEM (ulang 2x untuk loop) -->
-                @for ($i = 0; $i < 2; $i++)
+                @foreach ($gallerys as $gallery)
                     <div class="thumb-item">
-                        <img src="{{ asset('assets/images/slide1.jpg') }}">
+                        <img src="{{ asset('storage/gallery/' . $gallery->gambar) }}" onclick="showImage(this.src)">
                     </div>
-                    <div class="thumb-item">
-                        <img src="{{ asset('assets/images/slide2.jpg') }}">
-                    </div>
-                    <div class="thumb-item">
-                        <img src="{{ asset('assets/images/slide3.jpg') }}">
-                    </div>
-                    <div class="thumb-item">
-                        <img src="{{ asset('assets/images/slide4.jpg') }}">
-                    </div>
-                    <div class="thumb-item">
-                        <img src="{{ asset('assets/images/slide5.jpg') }}">
-                    </div>
-                @endfor
+                @endforeach
+
 
             </div>
 
         </div>
     </div>
+    <!-- MODAL IMAGE -->
+    <div class="modal fade" id="imageModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-transparent border-0">
+
+                <div class="modal-body text-center p-0">
+                    <img id="modalImage" class="img-fluid rounded">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/6287874730192" class="whatsapp-float" target="_blank">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+    <script>
+        function showImage(src) {
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = src;
+
+            let modal = new bootstrap.Modal(document.getElementById('imageModal'));
+            modal.show();
+        }
+    </script>
 @endsection

@@ -20,7 +20,7 @@
         <div class="row g-4">
 
             <!-- ITEM -->
-            @foreach ([['judul' => 'Staff SDM', 'biaya' => 'Rp 1.250.000', 'level' => 'Level 3'], ['judul' => 'Supervisor SDM', 'biaya' => 'Rp 1.750.000', 'level' => 'Level 4'], ['judul' => 'SPV Rekrutmen dan Seleksi SDM', 'biaya' => 'Rp 1.750.000', 'level' => 'Level 4'], ['judul' => 'Kabag SDM', 'biaya' => 'Rp 2.750.000', 'level' => 'Level 4'], ['judul' => 'Manajer SDM', 'biaya' => 'Rp 3.750.000', 'level' => 'Level 5']] as $item)
+            @foreach ($data as $item)
                 <div class="col-md-4">
                     <div class="card skema-card h-100">
 
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="card-footer bg-white border-0">
-                            <a href="{{ url('/skema-sertifikasi/' . Str::slug($item['judul'])) }}"
+                            <a href="{{ url('/skema-sertifikasi/' . Str::slug($item['id'])) }}"
                                 class="btn btn-primary w-100">Lihat Detail</a>
                         </div>
 

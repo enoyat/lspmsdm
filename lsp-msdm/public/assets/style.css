@@ -54,7 +54,7 @@ h5 {
 /* ================= BANNER ================= */
 .banner {
     position: relative;
-    background: url("/assets/images/banner.png") no-repeat center;
+    background: url("/assets/images/journey.png") no-repeat center;
     background-size: cover;
     background-position: 50% 85%;
     aspect-ratio: 3.5 / 1;
@@ -123,7 +123,7 @@ h5 {
 
 /* ================= CAROUSEL ================= */
 .carousel-img {
-    height: 350px;
+    height: 500px;
     object-fit: cover;
 }
 
@@ -137,33 +137,54 @@ h5 {
 }
 
 /* ================= THUMB CAROUSEL ================= */
+/* ================= THUMB CAROUSEL ================= */
 .thumb-carousel {
     background: #f8f9fa;
 }
-
+/* ================= THUMB CAROUSEL ================= */
 .thumb-track {
     display: flex;
     width: max-content;
     animation: scroll-left 20s linear infinite;
 }
-
-.thumb-item {
-    flex: 0 0 20%;
-    padding: 5px;
+/* pause animation saat hover */
+.thumb-track:hover {
+    animation-play-state: paused;
 }
-
+/* cursor pointer */
 .thumb-item img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* modal background gelap */
+.modal-content {
+    background: rgba(0, 0, 0, 0.8);
+}
+/* ITEM rapat */
+.thumb-item {
+    flex: 0 0 auto; /* ⭐ jangan pakai 20% */
+    height: 80px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* IMAGE tetap kecil & tajam */
+.thumb-item img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    display: block;
     transition: 0.3s;
+
+    margin-right: 4px; /* ⭐ jarak tipis */
 }
 
+/* HOVER */
 .thumb-item img:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
-
 @keyframes scroll-left {
     0% {
         transform: translateX(0);
@@ -281,4 +302,155 @@ h5 {
 .detail-card h5 {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
+}
+/* ================= ALUR SERTIFIKASI ================= */
+.alur-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+/* HOVER */
+.alur-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* LABEL (OFFLINE / ONLINE) */
+.alur-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(13, 110, 253, 0.9);
+    color: #fff;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+/* IMAGE */
+/* ================= ALUR SERTIFIKASI ================= */
+.alur-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+/* HOVER */
+.alur-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* LABEL (OFFLINE / ONLINE) */
+.alur-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(13, 110, 253, 0.9);
+    color: #fff;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+/* IMAGE */
+.alur-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: contain; /* ⭐ tidak kepotong */
+    background: #fff; /* isi space kosong */
+}
+/* ZOOM EFFECT */
+.alur-card:hover img {
+    transform: scale(1.05);
+}
+
+/* TITLE */
+.section-title {
+    letter-spacing: 1px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .alur-image img {
+        height: 200px;
+    }
+}
+
+/* ZOOM EFFECT */
+.alur-card:hover img {
+    transform: scale(1.05);
+}
+
+/* TITLE */
+.section-title {
+    letter-spacing: 1px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .alur-image img {
+        height: 200px;
+    }
+}
+.dropdown-elegant {
+    background: #1e293b;
+    border-radius: 10px;
+    border: none;
+}
+
+.dropdown-elegant .dropdown-item {
+    color: #e2e8f0;
+}
+
+.dropdown-elegant .dropdown-item:hover {
+    background: #334155;
+    color: #38bdf8;
+}
+.login-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.login-card h4 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.whatsapp-float i {
+    margin-top: 16px;
+}
+
+.whatsapp-float:hover {
+    background-color: #1ebe5d;
+    color: white;
 }
