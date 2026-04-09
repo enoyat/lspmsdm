@@ -13,7 +13,7 @@ class HomeController extends Controller
     }
     public function listgallery()
     {
-        $gallerys = Gallery::kategori('gallery')->latest()->get();
+        $gallerys = Gallery::latest()->paginate(12);
         return view('gallery', compact('gallerys'));
     }
     public function skemasertifikasi()

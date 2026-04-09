@@ -2,18 +2,24 @@
 
 @section('content')
     <div class="container py-5">
-        <h3 class="text-center mb-4">Gallery</h3>
-
+        <h5 class="text-center fw-bold mb-4 section-title">
+            GALLERY KEGIATAN LSP MSDM UNGGUL INDONESIA
+        </h5>
         <div class="row">
             @foreach ($gallerys as $key => $item)
                 <div class="col-md-3 mb-4">
                     <div class="card shadow-sm">
                         <img src="{{ asset('storage/gallery/' . $item->gambar) }}" class="card-img-top gallery-thumb"
-                            data-bs-toggle="modal" data-bs-target="#galleryModal" data-index="{{ $key }}"
+                            data-bs-toggle="modal" data-bs-target="#galleryModal" data-index="{{ $loop->index }}"
                             style="cursor:pointer; height:200px; object-fit:cover;">
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="d-flex justify-content-center mt-4">
+            {{ $gallerys->links() }}
         </div>
     </div>
 
