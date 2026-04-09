@@ -1,68 +1,124 @@
 @extends('layouts.app-admin')
+
 @section('content')
-    <div class="container">
-        <div class="container">
-            <div class="row mt-5 mb-5">
-                <div class="col-lg-12 margin-tb">
-                    <div class="float-left">
-                        <h2> gallerys</h2>
-                    </div>
-                    <div class="float-right">
-                        <a class="btn btn-success" href="{{ route('gallery.create') }}"> Create gallerys</a>
-                    </div>
-                </div>
+    <div class="container mt-5">
+
+        <h3 class="mb-3">Gallery Infinite Scroll</h3>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <select id="filter-kategori" class="form-select">
+                    <option value="">-- Semua Kategori --</option>
+                    @foreach ($kategoris as $kategori)
+                        <option value="{{ $kategori }}">{{ $kategori }}</option>
+                    @endforeach
+                </select>
             </div>
-            <hr>
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
-            <table>
-                <?php $i = 0; ?>
-                @foreach ($gallerys as $data)
-                    <div class="listmedia"
-                        style="width: 200px; display: inline-block; border: solid 1px; padding: 5px; text-align: center;">
-
-                        <img src="{{ asset('storage/gallery/' . $data->gambar) }}" class="thumbnail img-responsive"
-                            alt="{{ $data->title }}" />
-                        <div id='kode' style="font-size: 8px; display: none;">
-                            {{ asset('storage/gallery/' . $data->gambar) }}</div>
-                        {{ $data->title }}<br>
-                        {!! $data->description !!}<br>
-                        Status: {{ $data->f_aktif }}<br>
-                        Kategori: {{ $data->kategori }} <br>
-
-                        <div class="copybutton btn btn-xs btn-success" style="display: inline-block; width: 80px;">Copy Link
-                        </div>
-                        <div style="display: inline-block;">
-                            <form action="{{ route('gallery.destroy', $data->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <a class="btn btn-primary btn-xs" href="{{ route('gallery.edit', $data->id) }}">Edit</a>
-                                <button type="submit" class="btn btn-danger btn-xs"
-                                    onclick="return confirm('Apakah Anda yakin ingin menghapus media ini?')">Delete</button>
-                            </form>
-                        </div>
-
-                    </div>
-                @endforeach
-                </tbody>
-            </table>
-            <div style="text-align: center;"> {{ $gallerys->links('vendor.pagination.default') }}</div>
-
         </div>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#tabelku').DataTable();
-            });
-        </script>
-        <script type="text/javascript">
-            $(document).on('click', '.copybutton', function() {
-                var data = $(this).closest('.listmedia').find('#kode').text();
-                navigator.clipboard.writeText(data);
-                alert('copy link sukses');
-            });
-        </script>
+        <a href="{{ route('gallery.create') }}" class="btn btn-primary mb-4">Tambah Gallery</a>
+
+        <div class="row" id="gallery-container">
+            @include('admin.gallery.partials.data')
+        </div>
+
+        {{-- Loader --}}
+        <div class="text-center my-4" id="loading" style="display:none;">
+            <span>Loading...</span>
+        </div>
+
     </div>
+
+    <script>
+        let page = 1;
+        let loading = false;
+        let hasMore = true;
+        let kategori = "";
+
+        // OBSERVER
+        let observer = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && !loading && hasMore) {
+                loadMore();
+            }
+        });
+
+        // TRIGGER
+        let trigger = document.createElement('div');
+        trigger.id = "scroll-trigger";
+        document.querySelector('#gallery-container').after(trigger);
+        observer.observe(trigger);
+
+        // LOAD MORE
+        function loadMore() {
+            if (!hasMore || loading) return;
+
+            loading = true;
+            page++;
+
+            document.getElementById('loading').style.display = 'block';
+
+            fetch(`?page=${page}&kategori=${kategori}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+
+                    document.getElementById('gallery-container')
+                        .insertAdjacentHTML('beforeend', res.html);
+
+                    hasMore = res.hasMore;
+
+                    // refresh observer
+                    observer.unobserve(trigger);
+                    observer.observe(trigger);
+
+                    if (!hasMore) {
+                        document.getElementById('loading').innerHTML = "Semua data sudah tampil";
+                    } else {
+                        document.getElementById('loading').style.display = 'none';
+                    }
+
+                    loading = false;
+                })
+                .catch(() => {
+                    loading = false;
+                });
+        }
+
+        // FILTER
+        document.getElementById('filter-kategori').addEventListener('change', function() {
+            kategori = this.value;
+
+            // RESET
+            page = 1;
+            hasMore = true;
+            loading = false;
+
+            document.getElementById('gallery-container').innerHTML = "";
+            document.getElementById('loading').style.display = 'block';
+
+            fetch(`?page=1&kategori=${kategori}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+                    document.getElementById('gallery-container').innerHTML = res.html;
+                    hasMore = res.hasMore;
+
+                    document.getElementById('loading').style.display = 'none';
+                });
+        });
+
+        // COPY BUTTON
+        document.addEventListener("click", function(e) {
+            if (e.target.closest(".copybutton")) {
+                let card = e.target.closest(".card");
+                let data = card.querySelector(".kode").innerText;
+                navigator.clipboard.writeText(data);
+                alert("Copy link sukses");
+            }
+        });
+    </script>
 @endsection

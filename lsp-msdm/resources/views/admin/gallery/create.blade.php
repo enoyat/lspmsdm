@@ -52,7 +52,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <label for="">Kategori</label>
-                        <select name="kategori" id="kategori" class="form-control">
+                        <select name="kategori" id="kategori" class="form-control" required>
                             <option value="">Pilih Kategori</option>
                             <option value="carousel">carousel</option>
                             <option value="gallery">gallery</option>

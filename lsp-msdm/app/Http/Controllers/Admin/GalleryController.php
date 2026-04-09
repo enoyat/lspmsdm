@@ -15,13 +15,27 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $gallerys = Gallery::orderby('id', 'desc')->paginate(50);
-        return view('admin.gallery.index')->with(['gallerys' => $gallerys]);
-        //
-    }
+        $query = Gallery::latest();
 
+        if ($request->kategori) {
+            $query->where('kategori', $request->kategori);
+        }
+
+        $gallerys = $query->paginate(8);
+
+        if ($request->ajax()) {
+            return response()->json([
+                'html'    => view('admin.gallery.partials.data', compact('gallerys'))->render(),
+                'hasMore' => $gallerys->hasMorePages(),
+            ]);
+        }
+
+        $kategoris = Gallery::select('kategori')->distinct()->pluck('kategori');
+
+        return view('admin.gallery.index', compact('gallerys', 'kategoris'));
+    }
     /**
      * Show the form for creating a new resource.
      *
