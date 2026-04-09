@@ -56,7 +56,7 @@
 
                         <h5 class="mb-3">Detail Skema</h5>
 
-                        <p><strong>Metode Pelaksanaan:</strong><br>Offline</p>
+                        <p><strong>Metode Pelaksanaan:</strong><br>SJJ</p>
 
                         <p><strong>Total Unit Kompetensi:</strong><br>
                             <span class="badge bg-primary">{{ count($data['unit']) }}</span>
@@ -82,13 +82,11 @@
 
                         <hr>
 
-                        <a href="https://lspmsdmunggulindonesia.com/assets/images/{{ $data['dokumen'] }}" class="btn btn-primary w-100 mb-2">
+                        <a href="https://msdmui.nasonline.id/login" class="btn btn-primary w-100 mb-2" target="_blank">
                             Daftar Sekarang
                         </a>
-                        <a href="#" class="btn btn-success w-100 mb-2">
-                            Tanya Lebih Lanjut
-                        </a>
-                        <a href="{{ url('/skema-sertifikasi') }}" class="btn btn-outline-secondary w-100">
+                       
+                        <a href="{{ url('/skema-sertifikasi-online') }}" class="btn btn-outline-secondary w-100">
                             Kembali
                         </a>
 

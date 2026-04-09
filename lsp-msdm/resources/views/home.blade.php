@@ -19,7 +19,7 @@
                     <p class="mb-0">
                         <strong>No. Lisensi :</strong> BNSP-LSP-2177-ID <br>
                         <strong>No. SK Lisensi :</strong> KEP.1655/BNSP/VII/2022 <br>
-                        <strong>No. SK Lisensi :</strong> KEP.0772/BNSP/III/2024
+                        <strong>No. SK Lisensi SJJ :</strong> KEP.0772/BNSP/III/2024
                     </p>
                 </div>
 

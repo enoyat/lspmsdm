@@ -62,14 +62,15 @@
                             <td>Nama LSP</td>
                             <td><strong>LSP MSDM Unggul Indonesia</strong></td>
                         </tr>
+                         <tr>
+                            <td>No. Lisensi</td>
+                            <td><strong>BNSP-LSP-2177-ID</strong></td>
+                        </tr>
                         <tr>
                             <td>SK Lisensi</td>
                             <td><strong>KEP.1655/BNSP/VII/2022</strong></td>
                         </tr>
-                        <tr>
-                            <td>No. Lisensi</td>
-                            <td><strong>BNSP-LSP-2177-ID</strong></td>
-                        </tr>
+                       
                         <tr>
                             <td>Tanggal SK</td>
                             <td><strong>19 Agustus 2022</strong></td>
@@ -102,7 +103,7 @@
             </div>
 
         </div>
-
+       
         <!-- ================= STRUKTUR ================= -->
         <h4 class="text-center fw-bold mb-4">Struktur Organisasi</h4>
 

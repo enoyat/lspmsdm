@@ -15,15 +15,50 @@
 
             <div class="col-md-6">
                 <div class="profil-card">
-                    <h5>Sertifikat</h5>
-                    <img src="{{ asset('assets/images/sertifikat-lisensi.jpeg') }}" class="img-fluid tugas-fungsi-img">
+                    <h5></h5>
+                    <img src="{{ asset('assets/images/sk-lisensi.jpeg') }}" class="img-fluid tugas-fungsi-img">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="profil-card">
+                    <h5></h5>
+                    <img src="{{ asset('assets/images/kemkumham.jpeg') }}" class="img-fluid tugas-fungsi-img">
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <div class="profil-card">
+                    <h5></h5>
+                    <img src="{{ asset('assets/images/notaris.jpeg') }}" class="img-fluid tugas-fungsi-img">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="profil-card">
                     <h5>Lisensi</h5>
+                    <img src="{{ asset('assets/images/sertifikat-lisensi.jpeg') }}" class="img-fluid tugas-fungsi-img">
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <div class="profil-card">
+                    <h5></h5>
                     <img src="{{ asset('assets/images/lisensi.jpeg') }}" class="img-fluid tugas-fungsi-img">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="profil-card">
+                   
                 </div>
             </div>
 

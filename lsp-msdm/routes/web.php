@@ -15,6 +15,9 @@ Route::get('/legalitas', function () {
 Route::get('/skema-sertifikasi', [App\Http\Controllers\HomeController::class, 'skemasertifikasi'])->name('skema.index');
 Route::get('/skema-sertifikasi/{id}', [App\Http\Controllers\HomeController::class, 'skemadetail'])->name('skema.detail');
 
+Route::get('/skema-sertifikasi-online', [App\Http\Controllers\HomeController::class, 'skemasertifikasionline'])->name('skema.indexonline');
+Route::get('/skema-sertifikasi-online/{id}', [App\Http\Controllers\HomeController::class, 'skemadetailonline'])->name('skema.detailonline');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
