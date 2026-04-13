@@ -59,7 +59,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/skema-sertifikasi-online') }}" >Sertifikasi Jarah
+                        <a class="nav-link" href="{{ url('/skema-sertifikasi-online') }}">Sertifikasi Jarah
                             Jauh</a>
                     </li>
                     <li class="nav-item">
@@ -67,16 +67,20 @@
                             target="_blank">Informasi LSP</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('data-sertifikat') }}" target="_blank">Data
+                            Penerbitan Sertifikat</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('listgallery') }}">Gallery</a>
                     </li>
 
-                  
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://msdmui.nasonline.id/login">Login</a>
-                        </li>
-                   
 
-                   
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://msdmui.nasonline.id/login">Login</a>
+                    </li>
+
+
+
                 </ul>
             </div>
 

@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/listgallery', [App\Http\Controllers\HomeController::class, 'listgallery'])->name('listgallery');
+Route::get('/data-sertifikat', [App\Http\Controllers\HomeController::class, 'datasertifikat'])->name('data-sertifikat');
+
+
 Route::get('/tentang-lsp', function () {
     return view('tentanglsp');
 });
@@ -28,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('gallery', \App\Http\Controllers\Admin\GalleryController::class);
+    Route::resource('dokumen', \App\Http\Controllers\Admin\DokumenController::class);
 });
 
 require __DIR__ . '/auth.php';

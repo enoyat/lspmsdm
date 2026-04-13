@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Dokumen;
 use App\Models\Gallery;
 
 class HomeController extends Controller
@@ -15,6 +16,13 @@ class HomeController extends Controller
     {
         $gallerys = Gallery::latest()->paginate(12);
         return view('gallery', compact('gallerys'));
+    }
+    public function datasertifikat()
+    {
+        $offline = Dokumen::kategori('offline')->latest()->paginate(12);
+        $online  = Dokumen::kategori('online')->latest()->paginate(12);
+
+        return view('sertifikat', compact('offline', 'online'));
     }
     public function skemasertifikasi()
     {
@@ -44,7 +52,7 @@ class HomeController extends Controller
                 'kode'      => 'MSDM-003',
                 'level'     => 'Level 4',
                 'biaya'     => 'Rp 1.500.000',
-                 'dokumen'   => 'Skema-Staf-SDM.zip',
+                'dokumen'   => 'Skema-Staf-SDM.zip',
                 'deskripsi' => 'Skema sertifikasi ini ditujukan untuk tenaga kerja di bidang Manajer SDM yang bertanggung jawab dalam perencanaan strategis dan pengelolaan SDM secara keseluruhan.',
             ],
             [
@@ -53,7 +61,7 @@ class HomeController extends Controller
                 'kode'      => 'MSDM-004',
                 'level'     => 'Level 5',
                 'biaya'     => 'Rp 3.000.000',
-                 'dokumen'   => 'Skema-Staf-SDM.zip',
+                'dokumen'   => 'Skema-Staf-SDM.zip',
                 'deskripsi' => 'Skema sertifikasi ini ditujukan untuk tenaga kerja di bidang Manajer SDM yang bertanggung jawab dalam perencanaan strategis dan pengelolaan SDM secara keseluruhan.',
             ],
             [
@@ -62,7 +70,7 @@ class HomeController extends Controller
                 'kode'      => 'MSDM-005',
                 'level'     => 'Level 5',
                 'biaya'     => 'Rp 3.000.000',
-                 'dokumen'   => 'Skema-Staf-SDM.zip',
+                'dokumen'   => 'Skema-Staf-SDM.zip',
                 'deskripsi' => 'Skema sertifikasi ini ditujukan untuk tenaga kerja di bidang Manajer SDM yang bertanggung jawab dalam perencanaan strategis dan pengelolaan SDM secara keseluruhan.',
             ],
         ];
@@ -70,7 +78,7 @@ class HomeController extends Controller
         return view('skema', compact('data'));
         //
     }
-     public function skemasertifikasionline()
+    public function skemasertifikasionline()
     {
         // dummy data (nanti bisa dari database)
         $data = [
@@ -80,7 +88,7 @@ class HomeController extends Controller
                 'kode'      => 'MSDM-001',
                 'level'     => 'Level 3',
                 'biaya'     => 'Rp 750.000',
-                 'dokumen'   => 'Skema-Staf-SDM.zip',
+                'dokumen'   => 'Skema-Staf-SDM.zip',
                 'deskripsi' => 'Skema sertifikasi ini ditujukan untuk tenaga kerja di bidang Human Resource Supervisor yang bertanggung jawab dalam pengelolaan SDM.',
             ],
             [
@@ -89,7 +97,7 @@ class HomeController extends Controller
                 'kode'      => 'MSDM-002',
                 'level'     => 'Level 4',
                 'biaya'     => 'Rp 1.500.000',
-                 'dokumen'   => 'Skema-Staf-SDM.zip',
+                'dokumen'   => 'Skema-Staf-SDM.zip',
                 'deskripsi' => 'Skema sertifikasi ini ditujukan untuk tenaga kerja di bidang Human Resource Supervisor yang bertanggung jawab dalam pengelolaan SDM.',
             ],
             [
@@ -98,7 +106,7 @@ class HomeController extends Controller
                 'kode'      => 'MSDM-003',
                 'level'     => 'Level 4',
                 'biaya'     => 'Rp 1.500.000',
-                 'dokumen'   => 'Skema-Staf-SDM.zip',
+                'dokumen'   => 'Skema-Staf-SDM.zip',
                 'deskripsi' => 'Skema sertifikasi ini ditujukan untuk tenaga kerja di bidang Manajer SDM yang bertanggung jawab dalam perencanaan strategis dan pengelolaan SDM secara keseluruhan.',
             ],
             [
@@ -107,7 +115,7 @@ class HomeController extends Controller
                 'kode'      => 'MSDM-004',
                 'level'     => 'Level 5',
                 'biaya'     => 'Rp 3.000.000',
-                 'dokumen'   => 'Skema-Staf-SDM.zip',
+                'dokumen'   => 'Skema-Staf-SDM.zip',
                 'deskripsi' => 'Skema sertifikasi ini ditujukan untuk tenaga kerja di bidang Manajer SDM yang bertanggung jawab dalam perencanaan strategis dan pengelolaan SDM secara keseluruhan.',
             ],
             [
@@ -116,7 +124,7 @@ class HomeController extends Controller
                 'kode'      => 'MSDM-005',
                 'level'     => 'Level 5',
                 'biaya'     => 'Rp 3.000.000',
-                 'dokumen'   => 'Skema-Staf-SDM.zip',
+                'dokumen'   => 'Skema-Staf-SDM.zip',
                 'deskripsi' => 'Skema sertifikasi ini ditujukan untuk tenaga kerja di bidang Manajer SDM yang bertanggung jawab dalam perencanaan strategis dan pengelolaan SDM secara keseluruhan.',
             ],
         ];
@@ -127,7 +135,7 @@ class HomeController extends Controller
     public function skemadetail($id)
     {
         // dummy data (nanti bisa dari database)
-$data = [
+        $data = [
             [
                 'id'        => 1,
                 'judul'     => 'Staff SDM',
@@ -194,7 +202,7 @@ Supervisor Sumber Daya Manusia; atau',
                     'Surat keterangan kerja dari perusahaan sebagai Supervisor
 Sumber Daya Manusia dengan masa kerja minimal selama 6
 (enam) bulan; atau',
-		    'Copy surat pengalaman kerja 1 tahun sebagai Supervisor Sumber
+                    'Copy surat pengalaman kerja 1 tahun sebagai Supervisor Sumber
 Daya Manusia dan copy Sertifikat Kompetensi pada level
 Supervisor Sumber Daya Manusia.;',
 
@@ -231,7 +239,7 @@ Supervisor Rekrutmen dan Seleksi SDM; atau',
                     'Surat keterangan kerja dari perusahaan sebagai Supervisor
 Rekrutmen dan Seleksi SDM dengan masa kerja minimal selama 6
 (enam) bulan; atau',
-		    'Copy surat pengalaman kerja 1 tahun sebagai Supervisor
+                    'Copy surat pengalaman kerja 1 tahun sebagai Supervisor
 Rekrutmen dan Seleksi SDM dan copy Sertifikat Kompetensi pada
 level Supervisor Rekrutmen dan Seleksi SDM.;',
                 ],
@@ -242,7 +250,7 @@ level Supervisor Rekrutmen dan Seleksi SDM.;',
                 'kode'      => 'MSDM-004',
                 'level'     => 'Level 5',
                 'biaya'     => 'Rp 3.000.000',
-                 'dokumen'   => 'Kapala-Bagian-SDM.zip',
+                'dokumen'   => 'Kapala-Bagian-SDM.zip',
                 'deskripsi' => 'Skema sertifikasi ini ditujukan untuk tenaga kerja di bidang Manajer SDM yang bertanggung jawab dalam perencanaan strategis dan pengelolaan SDM secara keseluruhan.',
                 'unit'      => [
                     ['M.70SDM01.010.2', 'Menyusun Uraian Jabatan'],
@@ -274,7 +282,7 @@ Pelatihan yang terregistrasi/terkareditasi; atau',
                     'Copy surat keterangan sedang menduduki jabatan sebagai Kepala
 Bagian/Analis Senior Sumber Daya Manusia minimal selama 6
 (enam) bulan dari perusahaan tempat bekerja, atau;',
-		    'Copy surat keterangan pengalaman minimal 1 (satu) tahun sebagai
+                    'Copy surat keterangan pengalaman minimal 1 (satu) tahun sebagai
 Kepala Bagian/Analis Senior Sumber Daya Manusia dan Copy
 Sertifikat Kompetensi pada level jabatan Kepala Bagian/Analis
 Senior Sumber Daya Manusia dari Lembaga Sertifikasi Profesi
@@ -327,14 +335,13 @@ terregistrasi/terkareditasi; atau',
                     'Copy surat keterangan sedang menduduki jabatan sebagai
 manajer Sumber Daya Manusia minimal selama 6 (enam) bulan
 dari perusahaan tempat bekerja, atau;',
-		    'Copy surat keterangan memiliki pengalaman minimal 1 (satu)
+                    'Copy surat keterangan memiliki pengalaman minimal 1 (satu)
 tahun sebagai Manajer Sumber Daya Manusia dan Copy Sertifikat
 Kompetensi pada level jabatan Manajer Sumber Daya Manusia
 dari Lembaga Sertifikasi Profesi yang terakreditasi.',
                 ],
             ],
         ];
-       
 
         if (! isset($data[$id - 1])) {
             abort(404);
@@ -350,7 +357,7 @@ dari Lembaga Sertifikasi Profesi yang terakreditasi.',
     {
         // dummy data (nanti bisa dari database)
 
-       $data = [
+        $data = [
             [
                 'id'        => 1,
                 'judul'     => 'Staff SDM',
@@ -417,7 +424,7 @@ Supervisor Sumber Daya Manusia; atau',
                     'Surat keterangan kerja dari perusahaan sebagai Supervisor
 Sumber Daya Manusia dengan masa kerja minimal selama 6
 (enam) bulan; atau',
-		    'Copy surat pengalaman kerja 1 tahun sebagai Supervisor Sumber
+                    'Copy surat pengalaman kerja 1 tahun sebagai Supervisor Sumber
 Daya Manusia dan copy Sertifikat Kompetensi pada level
 Supervisor Sumber Daya Manusia.;',
 
@@ -454,7 +461,7 @@ Supervisor Rekrutmen dan Seleksi SDM; atau',
                     'Surat keterangan kerja dari perusahaan sebagai Supervisor
 Rekrutmen dan Seleksi SDM dengan masa kerja minimal selama 6
 (enam) bulan; atau',
-		    'Copy surat pengalaman kerja 1 tahun sebagai Supervisor
+                    'Copy surat pengalaman kerja 1 tahun sebagai Supervisor
 Rekrutmen dan Seleksi SDM dan copy Sertifikat Kompetensi pada
 level Supervisor Rekrutmen dan Seleksi SDM.;',
                 ],
@@ -465,7 +472,7 @@ level Supervisor Rekrutmen dan Seleksi SDM.;',
                 'kode'      => 'MSDM-004',
                 'level'     => 'Level 5',
                 'biaya'     => 'Rp 3.000.000',
-                 'dokumen'   => 'Kapala-Bagian-SDM.zip',
+                'dokumen'   => 'Kapala-Bagian-SDM.zip',
                 'deskripsi' => 'Skema sertifikasi ini ditujukan untuk tenaga kerja di bidang Manajer SDM yang bertanggung jawab dalam perencanaan strategis dan pengelolaan SDM secara keseluruhan.',
                 'unit'      => [
                     ['M.70SDM01.010.2', 'Menyusun Uraian Jabatan'],
@@ -497,7 +504,7 @@ Pelatihan yang terregistrasi/terkareditasi; atau',
                     'Copy surat keterangan sedang menduduki jabatan sebagai Kepala
 Bagian/Analis Senior Sumber Daya Manusia minimal selama 6
 (enam) bulan dari perusahaan tempat bekerja, atau;',
-		    'Copy surat keterangan pengalaman minimal 1 (satu) tahun sebagai
+                    'Copy surat keterangan pengalaman minimal 1 (satu) tahun sebagai
 Kepala Bagian/Analis Senior Sumber Daya Manusia dan Copy
 Sertifikat Kompetensi pada level jabatan Kepala Bagian/Analis
 Senior Sumber Daya Manusia dari Lembaga Sertifikasi Profesi
@@ -550,7 +557,7 @@ terregistrasi/terkareditasi; atau',
                     'Copy surat keterangan sedang menduduki jabatan sebagai
 manajer Sumber Daya Manusia minimal selama 6 (enam) bulan
 dari perusahaan tempat bekerja, atau;',
-		    'Copy surat keterangan memiliki pengalaman minimal 1 (satu)
+                    'Copy surat keterangan memiliki pengalaman minimal 1 (satu)
 tahun sebagai Manajer Sumber Daya Manusia dan Copy Sertifikat
 Kompetensi pada level jabatan Manajer Sumber Daya Manusia
 dari Lembaga Sertifikasi Profesi yang terakreditasi.',

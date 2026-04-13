@@ -18,5 +18,17 @@
             </div>
         </div>
 
+        <div class="row g-4">
+
+            <!-- UJI KOMPETENSI -->
+            <div class="col-md-6">
+                <a href="{{ route('dokumen.index') }}" class="card h-100 text-decoration-none text-dark">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">DOKUMEN SERTIFIKAT</h5>
+                        <p class="card-text">Kelola data dokumen sertifikat, termasuk upload dan pengelolaan.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 @endsection
