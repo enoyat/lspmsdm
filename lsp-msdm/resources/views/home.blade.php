@@ -26,6 +26,65 @@
             </div>
         </div>
 
+        <div class="container mt-5">
+
+            <!-- INFO GRAFIS -->
+            <div class="text-center mb-4">
+                <h4 class="py-3 fw-bold" style="background-color:#c9d6e3;">
+                    INFO GRAFIS
+                </h4>
+            </div>
+
+            <div class="row text-center">
+
+                <div class="col-md-3 mb-4">
+                    <div class="card text-white shadow-lg info-card">
+                        <div class="card-body py-5">
+                            <h5 class="mb-3">Asesi Offline</h5>
+                            <h1 class="fw-bold display-4">
+                                {{ $infografis['asesiOffline'] ?? 1000 }}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <div class="card text-white shadow-lg info-card">
+                        <div class="card-body py-5">
+                            <h5 class="mb-3">Asesi On-line</h5>
+                            <h1 class="fw-bold display-4">
+                                {{ $infografis['asesiOnline'] ?? 1000 }}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <div class="card text-white shadow-lg info-card">
+                        <div class="card-body py-5">
+                            <h5 class="mb-3">Skema</h5>
+                            <h1 class="fw-bold display-4">
+                                {{ $infografis['skema'] ?? 5 }}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <div class="card text-white shadow-lg info-card">
+                        <div class="card-body py-5">
+                            <h5 class="mb-3">TUK</h5>
+                            <h1 class="fw-bold display-4">
+                                {{ $infografis['tuk'] ?? 100 }}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
         <!-- PENDAFTARAN -->
         <div class="container py-5">
 

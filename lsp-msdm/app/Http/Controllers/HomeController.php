@@ -8,9 +8,15 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $infografis = [
+            'asesiOffline' => 1000,
+            'asesiOnline'  => 1000,
+            'skema'        => 5,
+            'tuk'          => 100,
+        ];
         $gallerys = Gallery::kategori('gallery')->latest()->get();
         $carousel = Gallery::kategori('carousel')->latest()->get();
-        return view('home', compact('gallerys', 'carousel'));
+        return view('home', compact('gallerys', 'carousel', 'infografis'));
     }
     public function listgallery()
     {

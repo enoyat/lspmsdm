@@ -454,3 +454,24 @@ h5 {
     background-color: #1ebe5d;
     color: white;
 }
+.card:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+.info-card {
+    background-color: #e60000 !important; /* paksa merah */
+    color: #ffffff !important; /* paksa putih */
+    border: none;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.info-card h5,
+.info-card h1 {
+    color: #ffffff !important; /* semua teks putih */
+}
+
+.info-card:hover {
+    transform: scale(1.07);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
